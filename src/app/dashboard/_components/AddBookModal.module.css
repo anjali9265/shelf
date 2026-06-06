@@ -1,0 +1,138 @@
+/* src/app/dashboard/_components/AddBookModal.module.css */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 24, 20, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+  width: 100%;
+  max-width: 440px;
+  padding: 28px;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.modalTitle {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.closeBtn {
+  font-size: 14px;
+  color: var(--text-faint);
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.1s;
+}
+.closeBtn:hover { background: var(--bg-subtle); color: var(--text); }
+
+.form { display: flex; flex-direction: column; gap: 18px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.input {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color 0.15s;
+}
+.input:focus { border-color: var(--text-muted); }
+.input::placeholder { color: var(--text-faint); }
+
+.statusGroup { display: flex; gap: 8px; }
+
+.statusBtn {
+  flex: 1;
+  padding: 8px 4px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  background: var(--bg);
+  transition: all 0.15s;
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+.statusBtn:hover { border-color: var(--text-muted); color: var(--text); }
+
+.statusBtn.active[data-status="READING"]  { background: #FFF4EC; border-color: var(--reading);  color: var(--reading);  }
+.statusBtn.active[data-status="WANT"]     { background: #EEF6F9; border-color: var(--want);     color: var(--want);     }
+.statusBtn.active[data-status="FINISHED"] { background: #EEF5F0; border-color: var(--finished); color: var(--finished); }
+
+.error {
+  font-size: 13px;
+  color: #C0392B;
+  background: #FEF2F2;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.cancelBtn {
+  padding: 10px 18px;
+  font-size: 13px;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  transition: background 0.1s;
+}
+.cancelBtn:hover { background: var(--bg-subtle); }
+
+.submitBtn {
+  padding: 10px 22px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+.submitBtn:hover:not(:disabled) { opacity: 0.8; }
+.submitBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.hint {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 16px;
+  text-align: center;
+  font-style: italic;
+  font-family: var(--font-serif);
+}

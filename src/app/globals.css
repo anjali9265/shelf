@@ -1,0 +1,54 @@
+/* src/app/globals.css */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  --bg:        #F7F5F0;
+  --bg-card:   #FFFFFF;
+  --bg-subtle: #EFEDE8;
+  --border:    #E2DED6;
+  --text:      #1A1814;
+  --text-muted:#7A756C;
+  --text-faint:#B5B0A8;
+
+  --want:      #4A90A4;  /* slate blue  */
+  --reading:   #D4834A;  /* warm amber  */
+  --finished:  #5A8F6A;  /* sage green  */
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; line-height: 1.2; }
+
+a { color: inherit; text-decoration: none; }
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  outline: none;
+}

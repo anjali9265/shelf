@@ -1,0 +1,38 @@
+/* src/app/dashboard/dashboard.module.css — REPLACES Phase 1 version */
+
+.page { min-height: 100vh; background: var(--bg); }
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.header { margin-bottom: 28px; }
+
+.title {
+  font-size: 42px;
+  font-style: italic;
+  color: var(--text);
+  letter-spacing: -1px;
+}
+
+.sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-weight: 300;
+}
+
+.sectionLabel {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.timerSection { margin-bottom: 40px; }
+
+.kanbanSection { margin-bottom: 40px; }

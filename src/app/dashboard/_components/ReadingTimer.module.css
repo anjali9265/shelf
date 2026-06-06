@@ -1,0 +1,78 @@
+/* src/app/dashboard/_components/ReadingTimer.module.css */
+
+.timer {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+.select:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.display {
+  font-family: var(--font-serif);
+  font-size: 52px;
+  font-style: italic;
+  color: var(--text);
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.controls { display: flex; gap: 10px; }
+
+.startBtn, .stopBtn {
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.startBtn {
+  background: var(--finished);
+  color: #fff;
+}
+
+.stopBtn {
+  background: var(--reading);
+  color: #fff;
+}
+
+.startBtn:hover, .stopBtn:hover { opacity: 0.85; }
+
+.status {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  font-family: var(--font-serif);
+}
+
+.empty {
+  font-size: 13px;
+  color: var(--text-faint);
+  font-style: italic;
+  font-family: var(--font-serif);
+  text-align: center;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}

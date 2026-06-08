@@ -1,5 +1,4 @@
 "use client";
-// src/app/dashboard/_components/KanbanBoard.tsx
 import { useState, useTransition } from "react";
 import { BookWithStats, BookStatus } from "@/types";
 import { BookCard } from "./BookCard";
@@ -7,9 +6,9 @@ import { AddBookModal } from "./AddBookModal";
 import styles from "./KanbanBoard.module.css";
 
 const COLUMNS: { status: BookStatus; label: string; accent: string }[] = [
-  { status: "READING",  label: "Reading",       accent: "var(--reading)"  },
-  { status: "WANT",     label: "Want to read",  accent: "var(--want)"     },
-  { status: "FINISHED", label: "Finished",      accent: "var(--finished)" },
+  { status: "WANT", label: "Want to read", accent: "var(--want)" },
+  { status: "READING", label: "Reading", accent: "var(--reading)" },
+  { status: "FINISHED", label: "Finished", accent: "var(--finished)" },
 ];
 
 type Props = { initialBooks: BookWithStats[] };
@@ -19,7 +18,8 @@ export function KanbanBoard({ initialBooks }: Props) {
   const [showModal, setShowModal] = useState(false);
   const [, startTransition] = useTransition();
 
-  const byStatus = (status: BookStatus) => books.filter((b) => b.status === status);
+  const byStatus = (status: BookStatus) =>
+    books.filter((b) => b.status === status);
 
   async function handleAdd(book: BookWithStats) {
     setBooks((prev) => [book, ...prev]);

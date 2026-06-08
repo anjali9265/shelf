@@ -27,6 +27,41 @@ export type UpdateBookInput = Partial<CreateBookInput> & {
   status?: BookStatus;
 };
 
+// ─── Google Books search result (from our /api/books/search endpoint) ─────────
+export type BookSearchResult = {
+  googleId: string;
+  title: string;
+  author: string;
+  cover: string | null;
+  description: string | null;
+  genres: string[];
+  pageCount: number | null;
+  publishedAt: string | null;
+};
+
+
+// ─── Raw Google Books API shapes (used in the route handler) ──────────────────
+export type GoogleBookVolume = {
+  id: string;
+  volumeInfo: {
+    title?: string;
+    authors?: string[];
+    description?: string;
+    categories?: string[];
+    pageCount?: number;
+    publishedDate?: string;
+    imageLinks?: {
+      thumbnail?: string;
+      smallThumbnail?: string;
+    };
+  };
+};
+
+export type GoogleBooksSearchResult = {
+  items?: GoogleBookVolume[];
+  totalItems?: number;
+};
+
 // Extend next-auth Session type to include user.id
 declare module "next-auth" {
   interface Session {

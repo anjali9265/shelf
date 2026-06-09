@@ -1,10 +1,9 @@
-// src/app/dashboard/page.tsx — REPLACES Phase 1 version
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { KanbanBoard } from "./_components/KanbanBoard";
-import { StatCards } from "./_components/StatCards";
+import { StatCardsContainer } from "./_components/StatCardsContainer";
 import { Charts } from "./_components/Charts";
 import { ReadingTimer } from "./_components/ReadingTimer";
 import { Navbar } from "../_components/Navbar";
@@ -123,7 +122,7 @@ export default async function DashboardPage() {
           </p>
         </div>
 
-        <StatCards stats={stats} />
+        <StatCardsContainer stats={stats} />
         <Charts stats={stats} />
 
         <div className={styles.timerSection}>

@@ -1,5 +1,4 @@
 "use client";
-// src/app/dashboard/_components/ReadingTimer.tsx
 import { useState, useEffect, useRef } from "react";
 import { BookWithStats } from "@/types";
 import styles from "./ReadingTimer.module.css";
@@ -46,6 +45,11 @@ export function ReadingTimer({ books }: Props) {
       });
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
+      
+      // Refresh stats dynamically
+      if ((window as any).__refreshStats) {
+        await (window as any).__refreshStats();
+      }
     } finally {
       setSaving(false);
       setElapsed(0);

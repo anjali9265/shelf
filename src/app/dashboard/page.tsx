@@ -3,9 +3,10 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { KanbanBoard } from "./_components/KanbanBoard";
-import { StatCardsContainer } from "./_components/StatCardsContainer";
+import { StatCards } from "./_components/StatCards";
 import { Charts } from "./_components/Charts";
 import { ReadingTimer } from "./_components/ReadingTimer";
+import { Recommendations } from "./_components/Recommendations";
 import { Navbar } from "../_components/Navbar";
 import { DashboardStats } from "@/types/stats";
 import styles from "./dashboard.module.css";
@@ -35,7 +36,7 @@ export default async function DashboardPage() {
     sessionCount: readingSessions.length,
   }));
 
-  // ── Compute stats inline (same logic as /api/stats) ──────────────────────
+  // ── Stats ─────────────────────────────────────────────────────────────────
   const totalBooks = books.length;
   const totalFinished = books.filter((b) => b.status === "FINISHED").length;
   const totalReading = books.filter((b) => b.status === "READING").length;
@@ -122,15 +123,17 @@ export default async function DashboardPage() {
           </p>
         </div>
 
-        <StatCardsContainer stats={stats} />
+        <StatCards stats={stats} />
         <Charts stats={stats} />
 
-        <div className={styles.timerSection}>
+        <div className={styles.section}>
           <p className={styles.sectionLabel}>Reading session</p>
           <ReadingTimer books={booksWithStats} />
         </div>
 
-        <div className={styles.kanbanSection}>
+        <Recommendations />
+
+        <div className={styles.section}>
           <p className={styles.sectionLabel}>Your books</p>
           <KanbanBoard initialBooks={booksWithStats} />
         </div>

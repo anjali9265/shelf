@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import { BookWithStats } from "@/types";
 import styles from "./ReadingTimer.module.css";
 
@@ -38,11 +39,7 @@ export function ReadingTimer({ books }: Props) {
 
     setSaving(true);
     try {
-      await fetch("/api/sessions", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ bookId: selectedId, duration: elapsed }),
-      });
+      await axios.post("/api/sessions", { bookId: selectedId, duration: elapsed }, { headers: { "Content-Type": "application/json" } });
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
       

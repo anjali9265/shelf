@@ -1,17 +1,12 @@
-/* src/app/dashboard/_components/BookCard.module.css */
-
 .card {
   background: var(--bg-card);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.15s, transform 0.15s;
+  overflow: visible;
 }
-
-.card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-1px);
-}
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
 
 .inner {
   display: flex;
@@ -63,24 +58,23 @@
   line-height: 1.3;
 }
 
-.author {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 300;
-}
+.author { font-size: 12px; color: var(--text-muted); font-weight: 300; }
+.genre  { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+.time   { font-size: 11px; color: var(--text-faint); margin-top: 4px; }
 
-.genre {
+.summaryBtn {
   font-size: 11px;
-  color: var(--text-faint);
-  margin-top: 2px;
+  color: var(--finished);
+  font-family: var(--font-sans);
+  margin-top: 6px;
+  text-align: left;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  font-weight: 500;
 }
+.summaryBtn:hover { opacity: 0.7; }
 
-.time {
-  font-size: 11px;
-  color: var(--text-faint);
-  margin-top: 4px;
-}
-
+/* ─── Actions menu ─── */
 .actions { position: relative; flex-shrink: 0; }
 
 .menuBtn {
@@ -117,8 +111,56 @@
   color: var(--text);
   transition: background 0.1s;
   font-family: var(--font-sans);
+  cursor: pointer;
 }
 .menuItem:hover { background: var(--bg-subtle); }
-
 .danger { color: #C0392B; }
 .danger:hover { background: #FEF2F2; }
+
+/* ─── Summary panel ─── */
+.summaryPanel {
+  border-top: 1px solid var(--border);
+  padding: 12px 14px;
+  background: #F9F7F4;
+  animation: slideDown 0.15s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.summaryLoading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  font-family: var(--font-serif);
+}
+
+.spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--border);
+  border-top-color: var(--text-muted);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.summaryText { display: flex; flex-direction: column; gap: 6px; }
+
+.summaryLine {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.summaryError {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-style: italic;
+}

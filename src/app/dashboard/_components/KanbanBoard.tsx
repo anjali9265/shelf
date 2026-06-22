@@ -1,5 +1,6 @@
 "use client";
 import { useState, useTransition } from "react";
+import axios from "axios";
 import { BookWithStats, BookStatus } from "@/types";
 import { BookCard } from "./BookCard";
 import { AddBookModal } from "./AddBookModal";
@@ -31,17 +32,13 @@ export function KanbanBoard({ initialBooks }: Props) {
     setBooks((prev) => prev.map((b) => (b.id === id ? { ...b, status } : b)));
 
     startTransition(async () => {
-      await fetch(`/api/books/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status }),
-      });
+      await axios.patch(`/api/books/${id}`, { status }, { headers: { "Content-Type": "application/json" } });
     });
   }
 
   async function handleDelete(id: string) {
     setBooks((prev) => prev.filter((b) => b.id !== id));
-    await fetch(`/api/books/${id}`, { method: "DELETE" });
+    await axios.delete(`/api/books/${id}`);
   }
 
   return (

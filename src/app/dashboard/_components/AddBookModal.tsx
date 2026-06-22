@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import axios from "axios";
 import Image from "next/image";
 import { BookWithStats, BookStatus, BookSearchResult } from "@/types";
 import { useBookSearch } from "./useBookSearch";
@@ -93,19 +94,8 @@ export function AddBookModal({ onAdd, onClose }: Props) {
           }
         : { title: query.trim(), author: "Unknown", status };
 
-      const res = await fetch("/api/books", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        setError(data.error ?? "Something went wrong");
-        return;
-      }
-
-      const book = await res.json();
+      const res = await axios.post("/api/books", payload);
+      const book = res.data;
       onAdd({ ...book, totalReadingTime: 0, sessionCount: 0 });
     } catch {
       setError("Network error — please try again");

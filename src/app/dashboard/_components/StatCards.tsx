@@ -16,16 +16,27 @@ function formatTime(secs: number) {
 }
 
 const CARDS = (s: DashboardStats) => [
-  { label: "Books on shelf",  value: s.totalBooks,                      sub: `${s.totalReading} reading now`       },
-  { label: "Finished",        value: s.totalFinished,                   sub: "all time"                            },
-  { label: "Time read",       value: formatTime(s.totalReadingTime),    sub: "tracked sessions"                    },
-  { label: "Day streak",      value: s.streak,                          sub: s.streak === 1 ? "day" : "days"       },
+  {
+    label: "Books on shelf",
+    value: s.totalBooks,
+    sub: `${s.totalReading} reading now`,
+  },
+  { label: "Finished", value: s.totalFinished, sub: "all time" },
+  {
+    label: "Time read",
+    value: formatTime(s.totalReadingTime),
+    sub: "tracked sessions",
+  },
+  {
+    label: "Day streak",
+    value: s.streak,
+    sub: s.streak === 1 ? "day" : "days",
+  },
 ];
 
 export function StatCards({ stats }: Props) {
   return (
     <div className={styles.grid}>
-
       {CARDS(stats).map((card) => (
         <div key={card.label} className={styles.card}>
           <p className={styles.label}>{card.label}</p>

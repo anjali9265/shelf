@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import axios from "axios";
 import { DashboardStats } from "@/types/stats";
 import { StatCards } from "./StatCards";
 
@@ -11,11 +12,8 @@ export function StatCardsContainer({ stats: initialStats }: Props) {
 
   const refreshStats = useCallback(async () => {
     try {
-      const res = await fetch("/api/stats");
-      if (res.ok) {
-        const newStats = await res.json();
-        setStats(newStats);
-      }
+      const res = await axios.get("/api/stats");
+      setStats(res.data);
     } catch (error) {
       console.error("Failed to refresh stats:", error);
     }

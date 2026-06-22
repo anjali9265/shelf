@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import { BookSearchResult } from "@/types";
 
 type State = {
@@ -28,12 +29,8 @@ export function useBookSearch(query: string, delay = 320) {
       abortRef.current = new AbortController();
 
       try {
-        const res = await fetch(
-          `/api/books/search?q=${encodeURIComponent(q)}`,
-          { signal: abortRef.current.signal }
-        );
-        if (!res.ok) throw new Error("Search failed");
-        const data = await res.json();
+        const res = await axios.get(`/api/books/search?q=${encodeURIComponent(q)}`, { signal: abortRef.current.signal });
+        const data = res.data;
         setState({ results: data.items ?? [], loading: false, error: null });
       } catch (err: unknown) {
         if (err instanceof Error && err.name === "AbortError") return;

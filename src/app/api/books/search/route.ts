@@ -1,8 +1,9 @@
-// Proxies Google Books API — key never exposed to the client
+
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/lib/auth";
 import { GoogleBookVolume, GoogleBooksSearchResult } from "@/types";
+import axios from "axios";
 
 export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -20,10 +21,10 @@ export async function GET(req: NextRequest) {
   if (apiKey) url.searchParams.set("key", apiKey);
 
   try {
-    const res = await fetch(url.toString(), { next: { revalidate: 60 } });
-    if (!res.ok) throw new Error(`Google Books API error: ${res.status}`);
+  const response = await axios.get(url.toString());
+  if (response.status !== 200) throw new Error(`Google Books API error: ${response.status}`);
 
-    const data: GoogleBooksSearchResult = await res.json();
+  const data: GoogleBooksSearchResult = response.data;
 
     // Shape the response into what the frontend needs
     const items = (data.items ?? []).map((vol: GoogleBookVolume) => {

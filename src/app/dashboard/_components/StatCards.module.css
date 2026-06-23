@@ -1,5 +1,3 @@
-/* src/app/dashboard/_components/StatCards.module.css */
-
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
